@@ -84,6 +84,7 @@ def handle_base_info(message):
     regexp_hostname = r'(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z0-9][a-z0-9-]{0,61}[a-z0-9]'
     regexp_ip = r'\d.+'
     id = str(message.chat.id)
+    print(id)
     data = request_query(id)
     print(data)
     # path = '{}.json'.format(message.chat.id)
@@ -91,7 +92,9 @@ def handle_base_info(message):
     #     data = json.load(f)
     #     print(data)
     send_id = data[1]
+    print(send_id)
     text = data[0]
+    print(text)
     if re.search(regexp_ip, text):
         hendlers_bot.hendler_base_ip(send_id, text)
     elif re.search(regexp_hostname, text):

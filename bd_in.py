@@ -11,7 +11,7 @@ DB_PORT = '5432'
 def create_table():
 
     commands = '''CREATE TABLE db_shodbot
-          (ID            SERIAL  PRIMARY KEY , 
+          (ID            SERIAL  PRIMARY KEY ,
           USER_ID        INT    NOT NULL,
           USER_NAME      VARCHAR(50)  NOT NULL,
           MESSAGE        TEXT);'''
@@ -35,13 +35,13 @@ def create_table():
 def insert_data(message):
     conn = psycopg2.connect(database=DB_NAME, user=DB_USER, password=DB_PASS, host=DB_HOST, port=DB_PORT)
     cur = conn.cursor()
+    USER_ID = message.from_user.id
+    print(USER_ID)
+    USER_NAME = message.from_user.username
+    print(USER_NAME)
+    LAST_MESSAGE = message.text
+    print(LAST_MESSAGE)
     try:
-
-
-        USER_ID = message.from_user.id
-        USER_NAME = message.from_user.username
-        LAST_MESSAGE = message.text
-
         insert_query = ("INSERT INTO db_shodbot (USER_ID, USER_NAME, MESSAGE) VALUES(%s, %s, %s)")
         cur.execute(insert_query, (USER_ID, USER_NAME, LAST_MESSAGE))
         conn.commit()

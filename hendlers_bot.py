@@ -164,7 +164,7 @@ def hendler_whois_ip(id, mess_req):
         target = str(ip_re).strip("['']")
         text = ip_whois.get_json_whois(target)
         bot.send_message(id, text)
-    elif re.search(pattern_hostname, data['message']['text']):
+    elif re.search(regexp_hostname, mess_req):
         #
         host = re.search(regexp_hostname, mess_req.lower()).group()
         hostname = str(host)

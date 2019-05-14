@@ -67,6 +67,9 @@ def request_query(id):
         mess_query = ("SELECT user_id, last_message FROM bot_db WHERE user_id = %s")
         cur.execute(mess_query, (id,))
         mess = cur.fetchall()
+        mess_req = mess[-1][-1]
+        mess_id = mess[-1][0]
+        return mess_req, mess_id
 
     except (Exception, psycopg2.Error) as error:
         if (conn):
@@ -77,9 +80,8 @@ def request_query(id):
             cur.close()
             conn.close()
             print("PostgreSQL connection is closed")
-    mess_req = mess[-1][-1]
-    mess_id = mess[-1][0]
-    return mess_req, mess_id
+
+
 
 
 

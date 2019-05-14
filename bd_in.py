@@ -10,11 +10,11 @@ DB_PORT = '5432'
 
 def create_table():
 
-    commands = ('''CREATE TABLE db_shodbot
+    commands = '''CREATE TABLE db_shodbot
           (ID INT PRIMARY KEY     NOT NULL,
           USER_ID        INT    NOT NULL,
           USER_NAME      VARCHAR(50)  NOT NULL,
-          MESSAGE        TEXT''')
+          MESSAGE        TEXT);'''
 
     conn = None
     try:

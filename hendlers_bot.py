@@ -51,128 +51,127 @@ def hendler_base_host(id, mess_req):
         bot.send_message(chat_id, error)
 
 
-def hendler_related_ip(data):
-    chat_id = data['message']['chat']['id']
+def hendler_related_ip(id, mess_req):
+    # chat_id = data['message']['chat']['id']
     regexp_ip = r'\d.+'
-    ip_re = re.findall(regexp_ip, data['message']['text'])
+    ip_re = re.findall(regexp_ip, mess_req)
     ip = str(ip_re).strip("['']")
-    bot.send_message(chat_id, 'Process can take some time')
+    bot.send_message(id, 'Process can take some time')
     text = api_shodan.get_related_ip(ip)
     parts = parts_message(text)
     try:
         for part in parts:
-            bot.send_message(chat_id, part)
+            bot.send_message(id, part)
     except shodan.APIError as e:
-        bot.send_message(chat_id, e)
+        bot.send_message(id, e)
     except BaseException as error:
-        bot.send_message(chat_id, error)
+        bot.send_message(id, error)
 
-def hendler_related_host(data):
-    chat_id = data['message']['chat']['id']
+def hendler_related_host(id, mess_req):
+    # chat_id = data['message']['chat']['id']
     regexp_hostname = r'(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z0-9][a-z0-9-]{0,61}[a-z0-9]'
-    host = re.search(regexp_hostname, data['message']['text'].lower()).group()
+    host = re.search(regexp_hostname, mess_req.lower()).group()
     target = str(host)
-    bot.send_message(chat_id, 'Process can take some time')
+    bot.send_message(id, 'Process can take some time')
     text = api_shodan.get_related_hosts(target)
     parts = parts_message(text)
     try:
         for part in parts:
-            bot.send_message(chat_id, part)
+            bot.send_message(id, part)
     except shodan.APIError as e:
-        bot.send_message(chat_id, e)
+        bot.send_message(id, e)
     except BaseException as error:
-        bot.send_message(chat_id, error)
+        bot.send_message(id, error)
 
 
-def hendler_vulns_ip(data):
+def hendler_vulns_ip(id, mess_req):
 
-    chat_id = data['message']['chat']['id']
+    # chat_id = data['message']['chat']['id']
     regexp_ip = r'\d.+'
-    ip_re = re.findall(regexp_ip, data['message']['text'])
+    ip_re = re.findall(regexp_ip, mess_req)
     ip = str(ip_re).strip("['']")
     text = api_shodan.vulns_simple(ip)
     parts = parts_message_vulns(text)
     try:
         for part in parts:
-            bot.send_message(chat_id, part)
+            bot.send_message(id, part)
     except shodan.APIError as e:
-        bot.send_message(chat_id, e)
+        bot.send_message(id, e)
     except BaseException as error:
-        bot.send_message(chat_id, error)
+        bot.send_message(id, error)
 
-def hendler_vulns_hostname(data):
+def hendler_vulns_hostname(id, mess_req):
 
-    chat_id = data['message']['chat']['id']
-    pattern_hostname = r'(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z0-9][a-z0-9-]{0,61}[a-z0-9]'
-    host = re.search(pattern_hostname, data['message']['text'].lower()).group()
+    # chat_id = data['message']['chat']['id']
+    regexp_hostname = r'(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z0-9][a-z0-9-]{0,61}[a-z0-9]'
+    host = re.search(regexp_hostname, mess_req.lower()).group()
     target = str(host)
     ip = api_shodan.get_ip_from_host(target)
     text = api_shodan.vulns_simple(ip)
     parts = parts_message_vulns(text)
     try:
         for part in parts:
-            bot.send_message(chat_id, part)
+            bot.send_message(id, part)
     except shodan.APIError as e:
-        bot.send_message(chat_id, e)
+        bot.send_message(id, e)
     except BaseException as error:
-        bot.send_message(chat_id, error)
+        bot.send_message(id, error)
 
 
-def hendler_full_info(data):
+def hendler_full_info(id, mess_req):
 
-    chat_id = data['message']['chat']['id']
-    pattern_ip = r'\d.+'
-    pattern_hostname = r'(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z0-9][a-z0-9-]{0,61}[a-z0-9]'
-
-    if re.search(pattern_ip, data['message']['text']):
-        ip_re = re.findall(pattern_ip, data['message']['text'])
+    # chat_id = data['message']['chat']['id']
+    regexp_ip = r'\d.+'
+    regexp_hostname = r'(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z0-9][a-z0-9-]{0,61}[a-z0-9]'
+    if re.search(regexp_ip, mess_req):
+        ip_re = re.findall(regexp_ip, mess_req)
         target = str(ip_re).strip("['']")
         text = api_shodan.full_info_ip(target)
         parts = parts_message(text)
         try:
             for part in parts:
                 time.sleep(1)
-                bot.send_message(chat_id, part)
+                bot.send_message(id, part)
                 time.sleep(2)
         except shodan.APIError as e:
-            bot.send_message(chat_id, e)
+            bot.send_message(id, e)
         except BaseException as error:
-            bot.send_message(chat_id, error)
+            bot.send_message(id, error)
 
-    elif re.search(pattern_hostname, data['message']['text']):
-        host = re.search(pattern_hostname, data['message']['text'].lower()).group()
+    elif re.search(regexp_hostname, mess_req):
+        host = re.search(regexp_hostname, mess_req.lower()).group()
         target = str(host)
         text = api_shodan.full_info_hostname(target)
         parts = parts_message(text)
         try:
             for part in parts:
-                bot.send_message(chat_id, part)
+                bot.send_message(id, part)
                 time.sleep(2)
         except shodan.APIError as e:
-            bot.send_message(chat_id, e)
+            bot.send_message(id, e)
         except BaseException as error:
-            bot.send_message(chat_id, error)
+            bot.send_message(id, error)
 
 
-def hendler_whois_ip(data):
+def hendler_whois_ip(id, mess_req):
 
-    chat_id = data['message']['chat']['id']
-    pattern_ip = r'\d.+'
-    pattern_hostname = r'(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z0-9][a-z0-9-]{0,61}[a-z0-9]'
+    # chat_id = data['message']['chat']['id']
+    regexp_ip = r'\d.+'
+    regexp_hostname = r'(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z0-9][a-z0-9-]{0,61}[a-z0-9]'
 
-    if re.search(pattern_ip, data['message']['text']):
-        ip_re = re.findall(pattern_ip, data['message']['text'])
+    if re.search(regexp_ip, mess_req):
+        ip_re = re.findall(regexp_ip, mess_req)
         target = str(ip_re).strip("['']")
         text = ip_whois.get_json_whois(target)
-        bot.send_message(chat_id, text)
+        bot.send_message(id, text)
     elif re.search(pattern_hostname, data['message']['text']):
         #
-        host = re.search(pattern_hostname, data['message']['text'].lower()).group()
+        host = re.search(regexp_hostname, mess_req.lower()).group()
         hostname = str(host)
         ip = api_shodan.get_ip_from_host(hostname)
         target = str(ip).strip("['']")
         text = ip_whois.get_json_whois(target)
-        bot.send_message(chat_id, text)
+        bot.send_message(id, text)
 
 
 

@@ -73,28 +73,28 @@ def handle_help(message):
     text = 'bse info - show base information about host\n\nvulns - show all vulnerabilities of the host and exploits, if they exists\n\nrelated hosts - show all hosts which are related with target by DNS\n\nfull info - show all information including "base info", "vulnerabilities" and "related hosts". You should know - using this command, BOT need some time to collect all information.\n\nwhois info - show information about host if there is no info in Shodan\n\nYou just need to enter valid IP (without port number) or HOSTNAME\n\nMost effective way to enter HOSTNAME is "exemple.com"(without protocol)'
     bot.send_message(message.from_user.id, text, reply_markup=user_markup)
 
-@bot.message_handler(regexp=r'(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z0-9][a-z0-9-]{0,61}[a-z0-9]')
-@bot.message_handler(regexp=r'\d.+')
-def handle_request(message):
-    bot.send_message(message.from_user.id, 'CHOOSE ACTION', reply_markup=user_markup)
-    #
+# @bot.message_handler(regexp=r'(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z0-9][a-z0-9-]{0,61}[a-z0-9]')
+# @bot.message_handler(regexp=r'\d.+')
+# def handle_request(message):
+#     bot.send_message(message.from_user.id, 'CHOOSE ACTION', reply_markup=user_markup)
+#     #
 
 @bot.message_handler(func=lambda mess: "base info" == mess.text, content_types=['text'])
 def handle_base_info(message):
     regexp_hostname = r'(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z0-9][a-z0-9-]{0,61}[a-z0-9]'
     regexp_ip = r'\d.+'
     id = str(message.chat.id)
-    print(id)
+    # print(id)
     data = request_query(id)
-    print(data)
+    # print(data)
     # path = '{}.json'.format(message.chat.id)
     # with open(path, 'r') as f:
     #     data = json.load(f)
     #     print(data)
     send_id = data[1]
-    print(send_id)
+    # print(send_id)
     text = data[0]
-    print(text)
+    # print(text)
     if re.search(regexp_ip, text):
         hendlers_bot.hendler_base_ip(send_id, text)
     elif re.search(regexp_hostname, text):
@@ -104,13 +104,18 @@ def handle_base_info(message):
 def hendler_vulns(message):
     regexp_hostname = r'(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z0-9][a-z0-9-]{0,61}[a-z0-9]'
     regexp_ip = r'\d.+'
-    path = '{}.json'.format(message.chat.id)
-    with open(path, 'r') as f:
-        data = json.load(f)
-    if re.search(regexp_ip, data['message']['text']):
-        hendlers_bot.hendler_vulns_ip(data)
-    elif re.search(regexp_hostname, data['message']['text']):
-        hendlers_bot.hendler_vulns_hostname(data)
+    id = str(message.chat.id)
+    # print(id)
+    data = request_query(id)
+    # print(data)
+    send_id = data[1]
+    # print(send_id)
+    text = data[0]
+    # print(text)
+    if re.search(regexp_ip, text):
+        hendlers_bot.hendler_vulns_ip(send_id, text)
+    elif re.search(regexp_hostname, text):
+        hendlers_bot.hendler_vulns_hostname(send_id, text)
 
 
 
@@ -118,30 +123,45 @@ def hendler_vulns(message):
 def handle_related(message):
     regexp_hostname = r'(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z0-9][a-z0-9-]{0,61}[a-z0-9]'
     regexp_ip = r'\d.+'
-    path = '{}.json'.format(message.chat.id)
-    with open(path, 'r') as f:
-        data = json.load(f)
-    if re.search(regexp_ip, data['message']['text']):
-       hendlers_bot.hendler_related_ip(data)
-    elif re.search(regexp_hostname, data['message']['text']):
-        hendlers_bot.hendler_related_host(data)
+    id = str(message.chat.id)
+    # print(id)
+    data = request_query(id)
+    # print(data)
+    send_id = data[1]
+    # print(send_id)
+    text = data[0]
+    # print(text)
+    if re.search(regexp_ip, text):
+       hendlers_bot.hendler_related_ip(send_id, text)
+    elif re.search(regexp_hostname, text):
+        hendlers_bot.hendler_related_host(send_id, text)
 
 
 @bot.message_handler(func=lambda mess: "full info" == mess.text, content_types=['text'])
 def handle_related(message):
     bot.send_message(message.chat.id, 'Process can take long time. If bot does not return correct or full information, maybe its sending too many requests and ShodanAPI cuold not process it. Try to collect information separately using buttons step by step')
-    path = '{}.json'.format(message.chat.id)
-    with open(path, 'r') as f:
-        data = json.load(f)
-    hendlers_bot.hendler_full_info(data)
+    id = str(message.chat.id)
+    # print(id)
+    data = request_query(id)
+    # print(data)
+    send_id = data[1]
+    # print(send_id)
+    text = data[0]
+    # print(text)
+    hendlers_bot.hendler_full_info(send_id, text)
 
 
 @bot.message_handler(func=lambda mess: "whois info" == mess.text, content_types=['text'])
 def handle_related(message):
-    path = '{}.json'.format(message.chat.id)
-    with open(path, 'r') as f:
-        data = json.load(f)
-    hendlers_bot.hendler_whois_ip(data)
+    id = str(message.chat.id)
+    # print(id)
+    data = request_query(id)
+    # print(data)
+    send_id = data[1]
+    # print(send_id)
+    text = data[0]
+    # print(text)
+    hendlers_bot.hendler_whois_ip(send_id, text)
 
 
 

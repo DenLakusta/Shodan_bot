@@ -64,7 +64,7 @@ def request_query(id):
     cur = conn.cursor()
     try:
 
-        mess_query = ("SELECT user_id, last_message FROM db_shodbot WHERE user_id = %s")
+        mess_query = ("SELECT user_id, message FROM db_shodbot WHERE user_id = %s")
         cur.execute(mess_query, (id,))
         mess = cur.fetchall()
         # if len(mess) > 1:

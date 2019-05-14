@@ -67,8 +67,12 @@ def request_query(id):
         mess_query = ("SELECT user_id, last_message FROM bot_db WHERE user_id = %s")
         cur.execute(mess_query, (id,))
         mess = cur.fetchall()
-        mess_req = mess[-1][-1]
-        mess_id = mess[-1][0]
+        if len(mess) > 1:
+            mess_req = mess[-1][-1]
+            mess_id = mess[-1][0]
+        else:
+            mess_req = mess[-1]
+            mess_id = [0]
         return mess_req, mess_id
 
     except (Exception, psycopg2.Error) as error:

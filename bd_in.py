@@ -11,7 +11,7 @@ DB_PORT = '5432'
 def create_table():
 
     commands = '''CREATE TABLE db_shodbot
-          (ID            INT  PRIMARY KEY NOT NULL DEFAULT nextval('db_shodbot'),
+          (ID            SERIAL  PRIMARY KEY , 
           USER_ID        INT    NOT NULL,
           USER_NAME      VARCHAR(50)  NOT NULL,
           MESSAGE        TEXT);'''

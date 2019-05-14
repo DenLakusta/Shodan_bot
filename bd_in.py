@@ -3,7 +3,7 @@ import psycopg2
 DB_NAME = 'bot_db'
 DB_USER = 'dlkst87'
 DB_PASS = 'dbshodan'
-DB_HOST = 'localhost'
+DB_HOST = 'postgres://wvncwlowheccpz:7741122fa3b0778a69858fc2427c6dff6365faffd630b1e8d0d58a7e892200d1@ec2-54-243-241-62.compute-1.amazonaws.com:5432/dehkm676okscod'
 DB_PORT = '5432'
 
 

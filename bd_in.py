@@ -33,50 +33,50 @@ def create_table():
 
 
 def insert_data(message):
-    # try:
-    conn = psycopg2.connect(database=DB_NAME, user=DB_USER, password=DB_PASS, host=DB_HOST, port=DB_PORT)
-    cur = conn.cursor()
+    try:
+        conn = psycopg2.connect(database=DB_NAME, user=DB_USER, password=DB_PASS, host=DB_HOST, port=DB_PORT)
+        cur = conn.cursor()
 
-    USER_ID = message.from_user.id
-    USER_NAME = message.from_user.username
-    LAST_MESSAGE = message.text
+        USER_ID = message.from_user.id
+        USER_NAME = message.from_user.username
+        LAST_MESSAGE = message.text
 
-    insert_query = ("INSERT INTO bot_db (USER_ID, USER_NAME, LAST_MESSAGE) VALUES(%s, %s, %s)")
-    cur.execute(insert_query, (USER_ID, USER_NAME, LAST_MESSAGE))
-    conn.commit()
-    count = cur.rowcount
-    print(count, "Record seccessfull")
-    # except (Exception, psycopg2.Error) as error:
-    #     if (conn):
-    #         print("Failed to insert record into mobile table", error)
-    # finally:
-    #     # closing database connection.
-    #     if (conn):
-    #         cur.close()
-    #         conn.close()
-    #         print("PostgreSQL connection is closed")
+        insert_query = ("INSERT INTO bot_db (USER_ID, USER_NAME, LAST_MESSAGE) VALUES(%s, %s, %s)")
+        cur.execute(insert_query, (USER_ID, USER_NAME, LAST_MESSAGE))
+        conn.commit()
+        count = cur.rowcount
+        print(count, "Record seccessfull")
+    except (Exception, psycopg2.Error) as error:
+        if (conn):
+            print("Failed to insert record into mobile table", error)
+    finally:
+        # closing database connection.
+        if (conn):
+            cur.close()
+            conn.close()
+            print("PostgreSQL connection is closed")
 
 
 
 def request_query(id):
-    # try:
-    conn = psycopg2.connect(database=DB_NAME, user=DB_USER, password=DB_PASS, host=DB_HOST, port=DB_PORT)
-    cur = conn.cursor()
-    mess_query = ("SELECT user_id, last_message FROM bot_db WHERE user_id = %s")
-    cur.execute(mess_query, (id,))
-    mess = cur.fetchall()
-    mess_req = mess[-1][-1]
-    mess_id = mess[-1][0]
-    # except (Exception, psycopg2.Error) as error:
-    #     if (conn):
-    #         print("Failed to insert record into mobile table", error)
-    # finally:
-    #     # closing database connection.
-    #     if (conn):
-    #         cur.close()
-    #         conn.close()
-    #         print("PostgreSQL connection is closed")
-    # return mess_req, mess_id
+    try:
+        conn = psycopg2.connect(database=DB_NAME, user=DB_USER, password=DB_PASS, host=DB_HOST, port=DB_PORT)
+        cur = conn.cursor()
+        mess_query = ("SELECT user_id, last_message FROM bot_db WHERE user_id = %s")
+        cur.execute(mess_query, (id,))
+        mess = cur.fetchall()
+        mess_req = mess[-1][-1]
+        mess_id = mess[-1][0]
+    except (Exception, psycopg2.Error) as error:
+        if (conn):
+            print("Failed to insert record into mobile table", error)
+    finally:
+        # closing database connection.
+        if (conn):
+            cur.close()
+            conn.close()
+            print("PostgreSQL connection is closed")
+    return mess_req, mess_id
 
 
 

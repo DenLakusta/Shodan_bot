@@ -42,7 +42,7 @@ def insert_data(message):
         USER_NAME = message.from_user.username
         LAST_MESSAGE = message.text
 
-        insert_query = ("INSERT INTO db_shodbot (USER_ID, USER_NAME, LAST_MESSAGE) VALUES(%s, %s, %s)")
+        insert_query = ("INSERT INTO db_shodbot (USER_ID, USER_NAME, MESSAGE) VALUES(%s, %s, %s)")
         cur.execute(insert_query, (USER_ID, USER_NAME, LAST_MESSAGE))
         conn.commit()
         count = cur.rowcount

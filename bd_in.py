@@ -34,7 +34,7 @@ def insert_data(message):
     cur = conn.cursor()
     USER_ID = message.from_user.id
     print(USER_ID)
-    USER_NAME = message.from_user.username
+    USER_NAME = message.from_user.first_name
     print(USER_NAME)
     LAST_MESSAGE = message.text
     print(LAST_MESSAGE)

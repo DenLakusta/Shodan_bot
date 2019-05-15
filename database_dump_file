@@ -1,0 +1,114 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 11.2 (Ubuntu 11.2-1.pgdg16.04+1)
+-- Dumped by pg_dump version 11.3 (Debian 11.3-1)
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- Name: db_shodbot; Type: TABLE; Schema: public; Owner: wvncwlowheccpz
+--
+
+CREATE TABLE public.db_shodbot (
+    id integer NOT NULL,
+    user_id integer NOT NULL,
+    user_name character varying(50) NOT NULL,
+    message text
+);
+
+
+ALTER TABLE public.db_shodbot OWNER TO wvncwlowheccpz;
+
+--
+-- Name: db_shodbot_id_seq; Type: SEQUENCE; Schema: public; Owner: wvncwlowheccpz
+--
+
+CREATE SEQUENCE public.db_shodbot_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.db_shodbot_id_seq OWNER TO wvncwlowheccpz;
+
+--
+-- Name: db_shodbot_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: wvncwlowheccpz
+--
+
+ALTER SEQUENCE public.db_shodbot_id_seq OWNED BY public.db_shodbot.id;
+
+
+--
+-- Name: db_shodbot id; Type: DEFAULT; Schema: public; Owner: wvncwlowheccpz
+--
+
+ALTER TABLE ONLY public.db_shodbot ALTER COLUMN id SET DEFAULT nextval('public.db_shodbot_id_seq'::regclass);
+
+
+--
+-- Data for Name: db_shodbot; Type: TABLE DATA; Schema: public; Owner: wvncwlowheccpz
+--
+
+COPY public.db_shodbot (id, user_id, user_name, message) FROM stdin;
+1	774258987	DenLKST	Dsns.gov.ua
+2	774258987	DenLKST	Dsns.gov.ua
+3	774258987	DenLKST	Dsns.gov.ua
+4	774258987	DenLKST	Dsns.gov.ua
+5	774258987	DenLKST	Dsns.gov.ua
+6	774258987	DenLKST	Dsns.gov.ua
+7	774258987	DenLKST	Dsns.gov.ua
+8	774258987	DenLKST	Dsns.gov.ua
+9	774258987	DenLKST	Oe.if.ua
+10	774258987	DenLKST	Mtu.gov.ua
+11	774258987	DenLKST	Vultr.com
+12	774258987	DenLKST	45.77.196.192
+13	774258987	DenLKST	209.250.235.129
+14	774258987	DenLKST	91.198.247.180
+15	774258987	DenLKST	92.244.99.205
+\.
+
+
+--
+-- Name: db_shodbot_id_seq; Type: SEQUENCE SET; Schema: public; Owner: wvncwlowheccpz
+--
+
+SELECT pg_catalog.setval('public.db_shodbot_id_seq', 15, true);
+
+
+--
+-- Name: db_shodbot db_shodbot_pkey; Type: CONSTRAINT; Schema: public; Owner: wvncwlowheccpz
+--
+
+ALTER TABLE ONLY public.db_shodbot
+    ADD CONSTRAINT db_shodbot_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: LANGUAGE plpgsql; Type: ACL; Schema: -; Owner: postgres
+--
+
+GRANT ALL ON LANGUAGE plpgsql TO wvncwlowheccpz;
+
+
+--
+-- PostgreSQL database dump complete
+--
+

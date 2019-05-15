@@ -54,8 +54,7 @@ def get_json_whois(ip):
         status = response_ip['status']
     except:
         status = ''
-    ip_info += 'IP: {}\nAS: {}\nCOUNTRY: {}\nREGION: {}\nCITY: {}\nORG: {}\nSTATUS: {}'.format(ip, asa, country, region,
-                                                                                               city, org, status)
+    ip_info += 'IP: {}\nAS: {}\nCOUNTRY: {}\nREGION: {}\nCITY: {}\nORG: {}\nSTATUS: {}'.format(ip, asa, country, region, city, org, status)
 
     return ip_info
 

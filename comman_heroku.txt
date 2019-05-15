@@ -1,0 +1,22 @@
+
+Creating an deploing app on heroku:
+1. git init
+2. create file "Procfile"(without extension) and write 'web: gunicorn main:app' where 'main' its main python script with web app, 'app' application process in script.
+3. install 'gunicorn'(pip install gunicorn) for runing your app
+4. create file '.gitignore' with files and folders that should be ignored.
+5. create file 'requirements.txt' with all dependenses (pip freeze > requirements.txt)
+6. git add .
+7. heroku login
+8. heroku git:remote -a NAME_OF_APP
+9. git commit -am "first commit"
+10. git push heroku master
+
+Database create:
+1. heroku addons:add heroku-postgresql:dev --app NAME_OF_APP
+2. heroku pg:promote NAME_OF_DATABASE
+3. heroku run python 'create_table_scrypr.py'
+4. other transactions are making using SQL queries with python Postgresql driver 'psycopg2'
+
+
+Дамп базы -
+pg_dump postgres://db_url_from_db_heroku_credencials > database_dump_file

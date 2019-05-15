@@ -24,12 +24,10 @@ def get_ip_json(ip):
         error_shodan = str(e)
         host.update({'error': error_shodan})
         # host = 'Invalid IP'
-
     except BaseException as error:
         error_base = str(error)
         host.update({'error': error_base})
         # host = 'Invalid IP'
-
     return host
 
 
@@ -62,9 +60,7 @@ def vulns_simple(ip):
 
 
 def get_ip_info(host):
-
     """Collecting base information about IP from recieved JSON"""
-
     base_info = ''
     try:
         if host.get('error') == None:
@@ -89,11 +85,8 @@ def get_ip_info(host):
             base_info = host.get('error')
     except shodan.APIError as e:
         print(str(e))
-
     except BaseException as error:
         print(str(error))
-
-
     return base_info
 
 
@@ -126,7 +119,6 @@ def get_host_name(host):
 
 def get_port_sevices(host):
     """Collect information about ports, services and servers from JSON"""
-
     service_port = ''
     if host.get('error') == None:
         for item in host['data']:
@@ -163,7 +155,6 @@ def get_port_sevices(host):
                     server = 'NO DATA'
             except:
                 server = 'NO SERVER DATA'
-
             # service_port += '\n' + buner_short+'\n'
             if server != 'NO SERVER DATA':
                 service_port += '\n' + 'PORT: ' + str(port) + ' ' + product + '  ' + info + '\n' + buner_short + '\n' + 'SERVER: ' + server + '\n'
@@ -325,7 +316,6 @@ def get_related_ip(ip):
                         print(error)
                     related_ip += 'IP: {}\n{}\n'.format(ip, dns)
             related_ip += '\n' + 'YOUR REQUEST IS TOO BIG. IT CONTAINS MORE THAN 50 HOSTS. PLEASE USE WEB SHODAN FOR FULL INFO'
-
     return related_ip
 
 

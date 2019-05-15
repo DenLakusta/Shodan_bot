@@ -4,8 +4,6 @@ import telebot
 from flask import request
 from flask_sslify import SSLify
 import requests
-# from new_shodan_bot import *
-
 from telebot import types
 import config_shodan
 import psycopg2
@@ -19,7 +17,6 @@ import jsonpickle
 import ujson
 from bd_in import *
 # #
-#
 
 
 app = flask.Flask(__name__)
@@ -29,18 +26,12 @@ sslify = SSLify(app)
 bot = telebot.TeleBot(config_shodan.token, threaded=True)
 
 
-
 def write_json(data, filename):
     with open(filename, 'w') as f:
         json.dump(data, f, indent=2, ensure_ascii=False)
 
 def write_target(text, chat_id):
     write_json(text, filename='{}.json'.format(chat_id))
-
-
-# last_request = ("SELECT DISTINCT last_message from bot_db WHERE
-# order by updated_at desc
-# limit 1)")
 
 
 user_markup = telebot.types.ReplyKeyboardMarkup(True, False)
@@ -53,7 +44,6 @@ def hendle_first_request(message):
 
     insert_data(message)
     bot.send_message(message.from_user.id, '\nCHOSE ACTION', reply_markup=user_markup)
-
 
 
 
@@ -73,11 +63,6 @@ def handle_help(message):
     text = 'bse info - show base information about host\n\nvulns - show all vulnerabilities of the host and exploits, if they exists\n\nrelated hosts - show all hosts which are related with target by DNS\n\nfull info - show all information including "base info", "vulnerabilities" and "related hosts". You should know - using this command, BOT need some time to collect all information.\n\nwhois info - show information about host if there is no info in Shodan\n\nYou just need to enter valid IP (without port number) or HOSTNAME\n\nMost effective way to enter HOSTNAME is "exemple.com"(without protocol)'
     bot.send_message(message.from_user.id, text, reply_markup=user_markup)
 
-# @bot.message_handler(regexp=r'(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z0-9][a-z0-9-]{0,61}[a-z0-9]')
-# @bot.message_handler(regexp=r'\d.+')
-# def handle_request(message):
-#     bot.send_message(message.from_user.id, 'CHOOSE ACTION', reply_markup=user_markup)
-#     #
 
 @bot.message_handler(func=lambda mess: "base info" == mess.text, content_types=['text'])
 def handle_base_info(message):
@@ -164,9 +149,6 @@ def handle_related(message):
     hendlers_bot.hendler_whois_ip(send_id, text)
 
 
-
-
-
 @app.route('/', methods=['POST'])
 def get_message():
     r = request.get_json()
@@ -182,14 +164,11 @@ def get_message():
     return 'ok', 200
 
 
-
 @app.route("/")
 def web_hook():
     bot.remove_webhook()
     bot.set_webhook(url="https://{}.herokuapp.com".format(config_shodan.APP_NAME))
     return "CONNECTED", 200
-
-
 
 
 def main():

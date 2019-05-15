@@ -100,8 +100,8 @@ def hendler_vulns_ip(id, mess_req):
     except BaseException as error:
         bot.send_message(id, error)
 
-def hendler_vulns_hostname(id, mess_req):
 
+def hendler_vulns_hostname(id, mess_req):
     # chat_id = data['message']['chat']['id']
     regexp_hostname = r'(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z0-9][a-z0-9-]{0,61}[a-z0-9]'
     host = re.search(regexp_hostname, mess_req.lower()).group()
@@ -119,7 +119,6 @@ def hendler_vulns_hostname(id, mess_req):
 
 
 def hendler_full_info(id, mess_req):
-
     # chat_id = data['message']['chat']['id']
     regexp_ip = r'\d.+'
     regexp_hostname = r'(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z0-9][a-z0-9-]{0,61}[a-z0-9]'
@@ -154,11 +153,9 @@ def hendler_full_info(id, mess_req):
 
 
 def hendler_whois_ip(id, mess_req):
-
     # chat_id = data['message']['chat']['id']
     regexp_ip = r'\d.+'
     regexp_hostname = r'(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z0-9][a-z0-9-]{0,61}[a-z0-9]'
-
     if re.search(regexp_ip, mess_req):
         ip_re = re.findall(regexp_ip, mess_req)
         target = str(ip_re).strip("['']")

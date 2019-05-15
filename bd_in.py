@@ -7,15 +7,12 @@ DB_HOST = 'ec2-54-243-241-62.compute-1.amazonaws.com'
 DB_PORT = '5432'
 
 
-
 def create_table():
-
     commands = '''CREATE TABLE db_shodbot
           (ID            SERIAL  PRIMARY KEY ,
           USER_ID        INT    NOT NULL,
-          USER_NAME      VARCHAR(50)  NOT NULL,
+          USER_NAME      VARCHAR(50),
           MESSAGE        TEXT);'''
-
     conn = None
     try:
         conn = psycopg2.connect(database=DB_NAME, user=DB_USER, password=DB_PASS, host=DB_HOST, port=DB_PORT)
@@ -63,7 +60,6 @@ def request_query(id):
     conn = psycopg2.connect(database=DB_NAME, user=DB_USER, password=DB_PASS, host=DB_HOST, port=DB_PORT)
     cur = conn.cursor()
     try:
-
         mess_query = ("SELECT user_id, message FROM db_shodbot WHERE user_id = %s")
         cur.execute(mess_query, (id,))
         mess = cur.fetchall()
@@ -84,9 +80,6 @@ def request_query(id):
             cur.close()
             conn.close()
             print("PostgreSQL connection is closed")
-
-
-
 
 
 if __name__ == '__main__':

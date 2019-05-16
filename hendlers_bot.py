@@ -166,7 +166,7 @@ def hendler_whois_ip(id, mess_req):
         hostname = str(host)
         # ip = api_shodan.get_ip_from_host(hostname)
         # target = str(ip).strip("['']")
-        text = ip_whois.get_json_whois(target)
+        text = ip_whois.get_json_whois(hostname)
         bot.send_message(id, text)
 
 

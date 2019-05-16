@@ -4,7 +4,6 @@ import telebot
 from flask import request
 from flask_sslify import SSLify
 import requests
-# from new_shodan_bot import *
 from telebot import types
 import config_shodan
 import os
@@ -165,8 +164,8 @@ def hendler_whois_ip(id, mess_req):
         #
         host = re.search(regexp_hostname, mess_req.lower()).group()
         hostname = str(host)
-        ip = api_shodan.get_ip_from_host(hostname)
-        target = str(ip).strip("['']")
+        # ip = api_shodan.get_ip_from_host(hostname)
+        # target = str(ip).strip("['']")
         text = ip_whois.get_json_whois(target)
         bot.send_message(id, text)
 

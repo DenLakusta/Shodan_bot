@@ -83,6 +83,21 @@ COPY public.db_shodbot (id, user_id, user_name, message) FROM stdin;
 13	774258987	DenLKST	209.250.235.129
 14	774258987	DenLKST	91.198.247.180
 15	774258987	DenLKST	92.244.99.205
+16	774258987	DenLKST	127.0.0.1
+17	774258987	DenLKST	92.244.99.195
+19	774258987	DenLKST	127.0.0.1
+20	774258987	DenLKST	dls.gov.ua
+22	774258987	LDR	dls.gov.ua
+23	277609288	Orest	5.53.119.6
+24	277609288	Orest	5.53.119.
+25	277609288	Orest	5.53.119.10
+26	277609288	Orest	ip 192.168.
+27	277609288	Orest	192.168.0.1
+28	774258987	LDR	192.168.0.1
+29	774258987	LDR	192.168.0.1
+30	774258987	LDR	5.53.119.6
+31	774258987	LDR	5.53.119.
+32	774258987	LDR	5.53.119.10
 \.
 
 
@@ -90,7 +105,7 @@ COPY public.db_shodbot (id, user_id, user_name, message) FROM stdin;
 -- Name: db_shodbot_id_seq; Type: SEQUENCE SET; Schema: public; Owner: wvncwlowheccpz
 --
 
-SELECT pg_catalog.setval('public.db_shodbot_id_seq', 15, true);
+SELECT pg_catalog.setval('public.db_shodbot_id_seq', 32, true);
 
 
 --

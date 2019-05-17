@@ -27,7 +27,12 @@ def get_json_whois(ip):
     url = url + str(
         ip) + '?fields=status,message,country,countryCode,region,regionName,city,zip,lat,lon,timezone,isp,org,as,query'
     response_ip = requests.get(url).json()
+    print(response_ip)
     ip_info = ''
+    try:
+        req = response_ip['query']
+    except:
+        req = ''
 
     try:
         asa = response_ip['as']
@@ -54,13 +59,13 @@ def get_json_whois(ip):
         status = response_ip['status']
     except:
         status = ''
-    ip_info += 'IP: {}\nAS: {}\nCOUNTRY: {}\nREGION: {}\nCITY: {}\nORG: {}\nSTATUS: {}'.format(ip, asa, country, region, city, org, status)
+    ip_info += 'HOST: {}\nAS: {}\nCOUNTRY: {}\nREGION: {}\nCITY: {}\nORG: {}\nSTATUS: {}'.format(req, asa, country, region, city, org, status)
 
     return ip_info
 
 
 def main():
-    print(get_json_whois('46.133.136.133'))
+    print(get_json_whois('124.34.56.32'))
 
 
 if __name__ == '__main__':

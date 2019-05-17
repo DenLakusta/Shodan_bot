@@ -123,7 +123,7 @@ def handle_related(message):
 
 
 @bot.message_handler(func=lambda mess: "full info" == mess.text, content_types=['text'])
-def handle_related(message):
+def handle_full(message):
     bot.send_message(message.chat.id, 'Process can take long time. If bot does not return correct or full information, maybe its sending too many requests and ShodanAPI cuold not process it. Try to collect information separately using buttons step by step')
     id = str(message.chat.id)
     # print(id)
@@ -137,15 +137,15 @@ def handle_related(message):
 
 
 @bot.message_handler(func=lambda mess: "whois info" == mess.text, content_types=['text'])
-def handle_related(message):
+def handle_whois(message):
     id = str(message.chat.id)
     # print(id)
     data = request_query(id)
     # print(data)
     send_id = data[1]
-    # print(send_id)
+    print(send_id)
     text = data[0]
-    # print(text)
+    print(text)
     hendlers_bot.hendler_whois_ip(send_id, text)
 
 

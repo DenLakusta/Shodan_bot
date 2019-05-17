@@ -212,7 +212,7 @@ def parts_message_vulns(text):
 
 
 def main():
-    pass
+    hendler_whois_ip('187.45.23.66')
 
 
 if __name__ == '__main__':

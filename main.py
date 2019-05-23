@@ -42,7 +42,7 @@ user_markup.add('help', 'base info', 'vulns', 'related hosts', 'full info', 'who
 @bot.message_handler(regexp = r'\d.+')
 def hendle_first_request(message):
     regexp_ip = r'\d.+'
-    mess_text - message.text
+    mess_text = message.text
     ip_re = re.findall(regexp_ip, mess_text)
     ip = str(ip_re).strip("['']")
     if ip.split('.')[0] == '192' and ip.split('.')[1] == '168' or ip.split('.')[0] == '172' and ip.split('.')[1] == '76' or ip.split('.')[0] == '10' and ip.split('.')[1] == '10' or ip == '127.0.0.1' or ip == '0.0.0.0':

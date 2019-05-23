@@ -45,7 +45,7 @@ def hendle_first_request(message):
     mess_text = message.text
     ip_re = re.findall(regexp_ip, mess_text)
     ip = str(ip_re).strip("['']")
-    if ip.split('.')[0] == '192' and ip.split('.')[1] == '168' or ip.split('.')[0] == '172' and ip.split('.')[1] == '76' or ip.split('.')[0] == '10' and ip.split('.')[1] == '10' or ip == '127.0.0.1' or ip == '0.0.0.0':
+    if ip.split('.')[0] == '192' and ip.split('.')[1] == '168' or ip.split('.')[0] == '172' and ip.split('.')[1] >= '16' and ip.split('.')[1] < '32' or ip.split('.')[0] == '10' or ip.split('.')[0] == '127' or ip == '0.0.0.0':
         bot.send_message(message.from_user.id, '\nYOU ENTER PRIVAT IP! PLEASE ENTER PUBLIC IP TO GET WRITE INFORMATION')
     else:
         insert_data(message)

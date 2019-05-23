@@ -25,13 +25,13 @@ app = flask.Flask(__name__)
 sslify = SSLify(app)
 bot = telebot.TeleBot(config_shodan.token, threaded=True)
 
-
-def write_json(data, filename):
-    with open(filename, 'w') as f:
-        json.dump(data, f, indent=2, ensure_ascii=False)
-
-def write_target(text, chat_id):
-    write_json(text, filename='{}.json'.format(chat_id))
+#
+# def write_json(data, filename):
+#     with open(filename, 'w') as f:
+#         json.dump(data, f, indent=2, ensure_ascii=False)
+#
+# def write_target(text, chat_id):
+#     write_json(text, filename='{}.json'.format(chat_id))
 
 
 user_markup = telebot.types.ReplyKeyboardMarkup(True, False)
@@ -41,9 +41,15 @@ user_markup.add('help', 'base info', 'vulns', 'related hosts', 'full info', 'who
 @bot.message_handler(regexp = r'(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z0-9][a-z0-9-]{0,61}[a-z0-9]')
 @bot.message_handler(regexp = r'\d.+')
 def hendle_first_request(message):
-
-    insert_data(message)
-    bot.send_message(message.from_user.id, '\nCHOSE ACTION', reply_markup=user_markup)
+    regexp_ip = r'\d.+'
+    mess_text - message.text
+    ip_re = re.findall(regexp_ip, mess_text)
+    ip = str(ip_re).strip("['']")
+    if ip.split('.')[0] == '192' and ip.split('.')[1] == '168' or ip.split('.')[0] == '172' and ip.split('.')[1] == '76' or ip.split('.')[0] == '10' and ip.split('.')[1] == '10' or ip == '127.0.0.1' or ip == '0.0.0.0':
+        bot.send_message(messge.from_user.id, '\nYOU ENTER PRIVAT IP! PLEASE ENTER PUBLIC IP TO GET WRITE INFORMATION')
+    else:
+        insert_data(message)
+        bot.send_message(message.from_user.id, '\nCHOSE ACTION', reply_markup=user_markup)
 
 
 
@@ -151,12 +157,12 @@ def handle_whois(message):
 
 @app.route('/', methods=['POST'])
 def get_message():
-    r = request.get_json()
-    chat_id = r['message']['chat']['id']
-    regexp_hostname = r'(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z0-9][a-z0-9-]{0,61}[a-z0-9]'
-    regexp_ip = r'\d.+'
-    if re.search(regexp_ip, r['message']['text']) or re.search(regexp_hostname, r['message']['text']):
-        write_target(r, chat_id)
+    # r = request.get_json()
+    # chat_id = r['message']['chat']['id']
+    # regexp_hostname = r'(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z0-9][a-z0-9-]{0,61}[a-z0-9]'
+    # regexp_ip = r'\d.+'
+    # if re.search(regexp_ip, r['message']['text']) or re.search(regexp_hostname, r['message']['text']):
+        # write_target(r, chat_id)
 
     json_string = flask.request.get_data().decode("utf-8")
     update = telebot.types.Update.de_json(json_string)

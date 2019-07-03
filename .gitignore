@@ -4,3 +4,4 @@ __pycache__/
 .idea/
 command_heroku.txt
 database_dump_file
+test_sys.py

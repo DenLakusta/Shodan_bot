@@ -2,8 +2,8 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 11.2 (Ubuntu 11.2-1.pgdg16.04+1)
--- Dumped by pg_dump version 11.3 (Debian 11.3-1)
+-- Dumped from database version 11.4 (Ubuntu 11.4-1.pgdg16.04+1)
+-- Dumped by pg_dump version 11.4 (Debian 11.4-1)
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -185,6 +185,17 @@ COPY public.db_shodbot (id, user_id, user_name, message) FROM stdin;
 117	341876831	Danil	scriptovik.ru
 118	341876831	Danil	https://takiepirogi.com.ua
 119	341876831	Danil	takiepirogi.com.ua
+120	774258987	LDR	128.124.215.121
+121	191977688	Soul	https://www.facebook.com/profile.php?id=100026999348801
+122	191977688	Soul	https://www.facebook.com/profile.php?id=100026999348801
+123	489510824	Max	109.70.100.21
+124	489510824	Max	195.58.234.69
+125	774258987	LDR	154.37.77.56
+126	774258987	LDR	dsns.gov.ua
+127	191977688	Soul	sak.net.ua
+128	191977688	Soul	info@sak.net.ua
+129	191977688	Soul	zakaz@sak.net.ua
+130	774258987	LDR	Upwork.com
 \.
 
 
@@ -192,7 +203,7 @@ COPY public.db_shodbot (id, user_id, user_name, message) FROM stdin;
 -- Name: db_shodbot_id_seq; Type: SEQUENCE SET; Schema: public; Owner: wvncwlowheccpz
 --
 
-SELECT pg_catalog.setval('public.db_shodbot_id_seq', 119, true);
+SELECT pg_catalog.setval('public.db_shodbot_id_seq', 130, true);
 
 
 --

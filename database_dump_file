@@ -196,6 +196,14 @@ COPY public.db_shodbot (id, user_id, user_name, message) FROM stdin;
 128	191977688	Soul	info@sak.net.ua
 129	191977688	Soul	zakaz@sak.net.ua
 130	774258987	LDR	Upwork.com
+131	774258987	LDR	sak.net.ua
+132	774258987	LDR	sak.net.ua
+133	191977688	Soul	aviaparts.site
+134	774258987	LDR	179.60.144.146, ip сервака vpn
+135	774258987	LDR	179.60.144.146
+136	774258987	LDR	https://www.infopulse.com
+137	774258987	LDR	infopulse.com
+138	774258987	LDR	195.250.62.46
 \.
 
 
@@ -203,7 +211,7 @@ COPY public.db_shodbot (id, user_id, user_name, message) FROM stdin;
 -- Name: db_shodbot_id_seq; Type: SEQUENCE SET; Schema: public; Owner: wvncwlowheccpz
 --
 
-SELECT pg_catalog.setval('public.db_shodbot_id_seq', 130, true);
+SELECT pg_catalog.setval('public.db_shodbot_id_seq', 138, true);
 
 
 --

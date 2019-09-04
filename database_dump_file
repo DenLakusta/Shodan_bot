@@ -2,8 +2,8 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 11.4 (Ubuntu 11.4-1.pgdg16.04+1)
--- Dumped by pg_dump version 11.4 (Debian 11.4-1)
+-- Dumped from database version 11.5 (Ubuntu 11.5-1.pgdg16.04+1)
+-- Dumped by pg_dump version 11.5 (Debian 11.5-1)
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -204,6 +204,34 @@ COPY public.db_shodbot (id, user_id, user_name, message) FROM stdin;
 136	774258987	LDR	https://www.infopulse.com
 137	774258987	LDR	infopulse.com
 138	774258987	LDR	195.250.62.46
+139	774258987	LDR	234.87.52.89
+140	774258987	LDR	128.89.56.88
+141	774258987	LDR	104.28.7.167
+142	774258987	LDR	dsns.gov.ua
+143	774258987	LDR	dsns.gov.ua
+144	341876831	Danil	answay.ga
+145	341876831	Danil	http://46.211.234.164
+146	341876831	Danil	46.211.234.164
+147	774258987	LDR	dsns.gov.ua
+148	124079286	Zanzibar	i.ua
+149	191977688	Soul	185.156.202.110
+150	774258987	LDR	194.0.148.102
+151	774258987	LDR	194.0.148.100
+152	774258987	LDR	mns.gov.ua
+153	774258987	LDR	194.0.148.12
+154	774258987	LDR	194.0.148.97
+155	774258987	LDR	Mont.ua
+156	774258987	LDR	194.149.242.16
+157	774258987	LDR	Mont.ua
+158	341876831	Danil	services.np.gov.ua
+159	191977688	Soul	82.144.201.77
+160	774258987	LDR	82.144.201.77
+161	496434440	Stepan	195.138.92.237
+162	496434440	Stepan	212.26.142.226
+163	496434440	Stepan	194.0.148.100
+164	496434440	Stepan	91.211.135.105
+165	496434440	Stepan	81.25.231.115
+166	774258987	LDR	dsns.gov.ua
 \.
 
 
@@ -211,7 +239,7 @@ COPY public.db_shodbot (id, user_id, user_name, message) FROM stdin;
 -- Name: db_shodbot_id_seq; Type: SEQUENCE SET; Schema: public; Owner: wvncwlowheccpz
 --
 
-SELECT pg_catalog.setval('public.db_shodbot_id_seq', 138, true);
+SELECT pg_catalog.setval('public.db_shodbot_id_seq', 166, true);
 
 
 --

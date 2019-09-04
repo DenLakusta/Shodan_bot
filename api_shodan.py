@@ -9,7 +9,7 @@ import ujson
 import ip_whois
 
 
-SHODAN_API_KEY = 'FmncKZw0VohGwWSfJtCLEdUDvdeljtXi'
+SHODAN_API_KEY = 'aOBiFDhcrb2imxa2pnEGHSNSz8ECCFL6'
 api = shodan.Shodan(SHODAN_API_KEY)
 
 

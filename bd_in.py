@@ -1,10 +1,10 @@
 import psycopg2
-
-DB_NAME = 'dehkm676okscod'
-DB_USER = 'wvncwlowheccpz'
-DB_PASS = '7741122fa3b0778a69858fc2427c6dff6365faffd630b1e8d0d58a7e892200d1'
-DB_HOST = 'ec2-54-243-241-62.compute-1.amazonaws.com'
-DB_PORT = '5432'
+import config_shodan
+DB_NAME = config_shodan.DB_NAME
+DB_USER = config_shodan.DB_USER
+DB_PASS = config_shodan.DB_PASS
+DB_HOST = config_shodan.DB_HOST
+DB_PORT = config_shodan.DB_PORT
 
 
 def create_table():

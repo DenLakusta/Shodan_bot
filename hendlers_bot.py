@@ -214,7 +214,7 @@ def parts_message_vulns(text):
 
 
 def main():
-    hendler_whois_ip('187.45.23.66')
+    pass
 
 
 if __name__ == '__main__':

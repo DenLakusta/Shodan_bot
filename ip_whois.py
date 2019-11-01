@@ -6,7 +6,7 @@ import shodan
 import sys
 import time
 
-SHODAN_API_KEY = 'FmncKZw0VohGwWSfJtCLEdUDvdeljtXi'
+SHODAN_API_KEY = config_shodan.SHODAN_API_KEY
 api = shodan.Shodan(SHODAN_API_KEY)
 url = 'http://ip-api.com/json/'
 
@@ -65,8 +65,7 @@ def get_json_whois(ip):
 
 
 def main():
-    print(get_json_whois('124.34.56.32'))
-
+    pass
 
 if __name__ == '__main__':
     main()

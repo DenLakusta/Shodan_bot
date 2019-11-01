@@ -9,7 +9,7 @@ import ujson
 import ip_whois
 
 
-SHODAN_API_KEY = 'aOBiFDhcrb2imxa2pnEGHSNSz8ECCFL6'
+SHODAN_API_KEY = config_shodan.SHODAN_API_KEY
 api = shodan.Shodan(SHODAN_API_KEY)
 
 
@@ -399,28 +399,6 @@ def write_json(data, filename ='shodan.json'):
 
 
 def main():
-    print(response_hostname('dans.gov.ua'))
-    # print(get_related_hosts('choopa.net'))
-    # print(get_related_ip('68.232.185.87'))
-    # print(full_info_ip('194.44.166.178'))
-    # print(get_ip_from_host('choopa.net'))
-    # print(parts_message(return_vulns('212.26.142.164')))
-    # print(get_dns_info('mtu.gov.ua'))
-    # print(dns_search('mty.gov.ua'))
-    # print(get_ip_from_host('mty.gov.ua'))
-    # print(get_host_name('195.191.39.30'))
-    # print(dns_search('195.191.39.242'))
-    # print(parts_message(return_vulns('212.26.142.164')))
-    # print(get_vulns(get_ip_json('212.26.142.164')))
-    # print(return_result_ip('68.232.185.118'))
-    # print(return_exploit('82.207.94.222'))
-    # print(get_vulns(get_ip_json('91.198.247.183')))
-    # print(response_hostname('mty.gov.ua'))
-    # print(vulns_simple('212.26.142.164'))
-    # print(return_vulns('212.26.142.164'))
-    # print(get_ip_from_host('mty.gov.ua'))
-    # print(search_exploit(get_vulns(get_ip_json('212.26.142.164'))))
-    # print(get_ip_json('68.232.185.87'))
-    # print(get_ip_info(get_ip_json('68.232.185.118')))
+    pass
 if __name__ == '__main__':
     main()

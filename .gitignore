@@ -5,3 +5,4 @@ __pycache__/
 command_heroku.txt
 database_dump_file
 test_sys.py
+config_shodan.py
